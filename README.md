@@ -23,8 +23,8 @@ This repository is for Respondent SDET test.
 
 
 3. How do I get set up?
-(1) unzip the file
-(2) open your terminal, go to folder YourUnzippedFileLocation/respondent-tech
+(1) unzip the file or git pull https://github.com/gitpanshen/respondent-tech.git
+(2) open your terminal, go to folder respondent-tech
 (3) if you want to run it locally, then run the following commands one by one in your terminal: 
     npm install
     node_modules/.bin/webdriver-manager update
