@@ -26,12 +26,12 @@ This repository is for Respondent SDET test.
 (1) unzip the file or git pull https://github.com/gitpanshen/respondent-tech.git
 (2) open your terminal, go to folder respondent-tech
 (3) if you want to run it locally, then run the following commands one by one in your terminal: 
-    npm install
-    node_modules/.bin/webdriver-manager update
-    npm run ci
+    *npm install
+    *node_modules/.bin/webdriver-manager update
+    *npm run ci
 (4) if you want to run it in docker, then run the following commands one by one in your terminal: 
-    docker build -t respondent-tech .
-    docker run -i -t respondent-tech
+    *docker build -t respondent-tech .
+    *docker run -i -t respondent-tech
 
 4. Contribution guidelines
 (1)Writing tests: Shen
