@@ -2,6 +2,7 @@ exports.config = {
   params: {
     basicUrl: 'http://localhost:3000/',
     incorrectBasicUrl: 'http://localhosts:3000/',
+    csvFilePath: './data/SDET-TEST-data-candidate.csv',
     newUser: {
       firstName: 'Shen',
       gender: 'male',
@@ -33,7 +34,7 @@ exports.config = {
     chromeOptions: {
       args: ['--headless',
         '--no-sandbox',
-        '--disable=gpu',
+        '--disable-gpu',
         '--disable-dev-shm-usage'],
     },
   },

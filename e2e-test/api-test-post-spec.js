@@ -1,8 +1,6 @@
 const Request = require('request');
 const csv = require('csvtojson');
 
-const csvFilePath = './data/SDET-TEST-data-candidate.csv';
-
 describe('e2e API test - post: ', () => {
   describe('when testing post with correct URL to add new user', () => {
     it('should return status code 200', (done) => {
@@ -38,7 +36,7 @@ describe('e2e API test - post: ', () => {
     });
 
     it('should get one more user in CSV file', async (done) => {
-      const csvJsonArrayOld = await csv().fromFile(csvFilePath);
+      const csvJsonArrayOld = await csv().fromFile(browser.params.csvFilePath);
       Request.post({
         headers: { 'content-type': 'application/json' },
         url: `${browser.params.basicUrl}add`,
@@ -49,7 +47,7 @@ describe('e2e API test - post: ', () => {
           console.log(err);
         }
         console.log('\nchecking csv file length when posting with correct API URL...');
-        const csvJsonArrayNew = await csv().fromFile(csvFilePath);
+        const csvJsonArrayNew = await csv().fromFile(browser.params.csvFilePath);
         expect(csvJsonArrayNew.length).toEqual(csvJsonArrayOld.length + 1);
         done();
       });
@@ -66,7 +64,7 @@ describe('e2e API test - post: ', () => {
           console.log(err);
         }
         console.log('\nchecking last line content in CSV when posting with correct API URL..');
-        const csvJsonArray = await csv().fromFile(csvFilePath);
+        const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
         const lastLine = csvJsonArray[csvJsonArray.length - 1];
         expect(lastLine.firstName).toBe(browser.params.newUser.firstName);
         expect(lastLine.gender).toBe(browser.params.newUser.gender);
@@ -115,7 +113,7 @@ describe('e2e API test - post: ', () => {
     });
 
     it('should not get one more user in CSV file', async (done) => {
-      const csvJsonArrayOld = await csv().fromFile(csvFilePath);
+      const csvJsonArrayOld = await csv().fromFile(browser.params.csvFilePath);
       Request.post({
         headers: { 'content-type': 'application/json' },
         url: `${browser.params.basicUrl}adds`,
@@ -126,7 +124,7 @@ describe('e2e API test - post: ', () => {
           console.log(err);
         }
         console.log('\nchecking csv file length when posting with incorrect API URL...');
-        const csvJsonArrayNew = await csv().fromFile(csvFilePath);
+        const csvJsonArrayNew = await csv().fromFile(browser.params.csvFilePath);
         expect(csvJsonArrayNew.length).toEqual(csvJsonArrayOld.length);
         done();
       });

@@ -1,8 +1,6 @@
 const Request = require('request');
 const csv = require('csvtojson');
 
-const csvFilePath = './data/SDET-TEST-data-candidate.csv';
-
 describe('e2e API test - get: ', () => {
   describe('when testing correct basic API', () => {
     it('should return status code 200', (done) => {
@@ -68,7 +66,7 @@ describe('e2e API test - get: ', () => {
     });
 
     it('should return correct number of users', async (done) => {
-      const csvJsonArray = await csv().fromFile(csvFilePath);
+      const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
       Request.get({
         headers: { 'content-type': 'application/json' },
         url: `${browser.params.basicUrl}users`,
@@ -83,7 +81,7 @@ describe('e2e API test - get: ', () => {
     });
 
     it('should return correct response content', async (done) => {
-      const csvJsonArray = await csv().fromFile(csvFilePath);
+      const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
       Request.get({
         headers: { 'content-type': 'application/json' },
         url: `${browser.params.basicUrl}users`,
@@ -119,7 +117,7 @@ describe('e2e API test - get: ', () => {
 
   describe('when testing correct API to search user by name', () => {
     it('should return status code 200', async (done) => {
-      const csvJsonArray = await csv().fromFile(csvFilePath);
+      const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
       const name = csvJsonArray[0].firstName;
       Request.get({
         headers: { 'content-type': 'application/json' },
@@ -135,7 +133,7 @@ describe('e2e API test - get: ', () => {
     });
 
     it('should return correct number of results when searching by name', async (done) => {
-      const csvJsonArray = await csv().fromFile(csvFilePath);
+      const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
       const name = csvJsonArray[0].firstName;
       Request.get({
         headers: { 'content-type': 'application/json' },
@@ -158,7 +156,7 @@ describe('e2e API test - get: ', () => {
     });
 
     it('should return correct names when searching by name', async (done) => {
-      const csvJsonArray = await csv().fromFile(csvFilePath);
+      const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
       const name = csvJsonArray[0].firstName;
       Request.get({
         headers: { 'content-type': 'application/json' },
@@ -179,7 +177,7 @@ describe('e2e API test - get: ', () => {
 
   describe('when testing incorrect API URL to search user by name', () => {
     it('should return 404', async (done) => {
-      const csvJsonArray = await csv().fromFile(csvFilePath);
+      const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
       const name = csvJsonArray[0].firstName;
       Request.get({
         headers: { 'content-type': 'application/json' },
@@ -213,7 +211,7 @@ describe('e2e API test - get: ', () => {
 
   describe('when testing correct API to search user by location', () => {
     it('should return status code 200', async (done) => {
-      const csvJsonArray = await csv().fromFile(csvFilePath);
+      const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
       const location = csvJsonArray[0].city;
       Request.get({
         headers: { 'content-type': 'application/json' },
@@ -229,7 +227,7 @@ describe('e2e API test - get: ', () => {
     });
 
     it('should return correct number of results when searching by location', async (done) => {
-      const csvJsonArray = await csv().fromFile(csvFilePath);
+      const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
       const location = csvJsonArray[0].city;
       Request.get({
         headers: { 'content-type': 'application/json' },
@@ -252,7 +250,7 @@ describe('e2e API test - get: ', () => {
     });
 
     it('should return correct locations', async (done) => {
-      const csvJsonArray = await csv().fromFile(csvFilePath);
+      const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
       const location = csvJsonArray[0].city;
       Request.get({
         headers: { 'content-type': 'application/json' },
@@ -273,7 +271,7 @@ describe('e2e API test - get: ', () => {
 
   describe('when testing incorrect API URL to search by location', () => {
     it('should return 404', async (done) => {
-      const csvJsonArray = await csv().fromFile(csvFilePath);
+      const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
       const location = csvJsonArray[0].city;
       Request.get({
         headers: { 'content-type': 'application/json' },

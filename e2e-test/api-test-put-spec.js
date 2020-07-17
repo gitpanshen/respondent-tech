@@ -1,8 +1,6 @@
 const Request = require('request');
 const csv = require('csvtojson');
 
-const csvFilePath = './data/SDET-TEST-data-candidate.csv';
-
 describe('e2e API test - put: ', () => {
   describe('when testing post with correct URL to update location', () => {
     it('should return status code 200', (done) => {
@@ -38,7 +36,7 @@ describe('e2e API test - put: ', () => {
     });
 
     it('should get the same user number in CSV file', async (done) => {
-      const csvJsonArrayOld = await csv().fromFile(csvFilePath);
+      const csvJsonArrayOld = await csv().fromFile(browser.params.csvFilePath);
       Request.put({
         headers: { 'content-type': 'application/json' },
         url: `${browser.params.basicUrl}update`,
@@ -49,7 +47,7 @@ describe('e2e API test - put: ', () => {
           console.log(err);
         }
         console.log('\nchecking csv file length when putting with correct API URL...');
-        const csvJsonArrayNew = await csv().fromFile(csvFilePath);
+        const csvJsonArrayNew = await csv().fromFile(browser.params.csvFilePath);
         expect(csvJsonArrayNew.length).toEqual(csvJsonArrayOld.length);
         done();
       });
@@ -66,7 +64,7 @@ describe('e2e API test - put: ', () => {
           console.log(err);
         }
         console.log('\nchecking updated content in CSV after putting with correct API URL..');
-        const csvJsonArray = await csv().fromFile(csvFilePath);
+        const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
         for (let i = 0; i < csvJsonArray.length; i += 1) {
           if (csvJsonArray[i].id === '54e333ade19982b7e852edf9227485a6') {
             expect(csvJsonArray[i].city).toBe(browser.params.updateLocation.city);
@@ -114,7 +112,7 @@ describe('e2e API test - put: ', () => {
   });
 
   beforeAll(async () => {
-    const csvJsonArray = await csv().fromFile(csvFilePath);
+    const csvJsonArray = await csv().fromFile(browser.params.csvFilePath);
     let flag = false;
     for (let i = 0; i < csvJsonArray.length; i += 1) {
       if (csvJsonArray[i].id === '54e333ade19982b7e852edf9227485a6') {
