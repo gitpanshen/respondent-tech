@@ -211,7 +211,6 @@ describe('e2e API test - get: ', () => {
     });
   });
 
-  //
   describe('when testing correct API to search user by location', () => {
     it('should return status code 200', async (done) => {
       const csvJsonArray = await csv().fromFile(csvFilePath);
