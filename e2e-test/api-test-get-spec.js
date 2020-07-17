@@ -16,7 +16,7 @@ describe('e2e API test - get: ', () => {
         console.log('\nchecking status code using correct basic API URL...');
         expect(res.statusCode).toBe(200);
         // https://chercher.tech/protractor/api-testing-protractor, done() is very very important
-        // this is one will enable to integrate the request module with Typescript
+        // this is one will enable to integrate the request module
         done();
       });
     });
